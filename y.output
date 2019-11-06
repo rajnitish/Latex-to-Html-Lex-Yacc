@@ -1,0 +1,1828 @@
+Terminals unused in grammar
+
+   TITLE
+   AUTHOR
+   DATE
+   MAKETITLE
+   UNDERLINE
+   H
+   T
+   B
+   L
+   C
+   R
+   PIPE
+
+
+State 33 conflicts: 1 shift/reduce
+State 34 conflicts: 1 shift/reduce
+State 37 conflicts: 1 shift/reduce
+State 49 conflicts: 2 shift/reduce
+State 56 conflicts: 2 shift/reduce
+State 83 conflicts: 1 shift/reduce
+State 98 conflicts: 2 shift/reduce
+State 135 conflicts: 1 shift/reduce
+State 137 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: latexstatement $end
+
+    1 word: WORD
+
+    2 letters: LETTERS
+
+    3 $@1: %empty
+
+    4 $@2: %empty
+
+    5 $@3: %empty
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore BEGINDOC $@2 body ENDDOC $@3
+
+    7 ignore: PREAMBLE ignore
+    8       | %empty
+
+    9 body: body options
+   10     | options
+
+   11 options: section
+   12        | subsection
+   13        | graphics
+   14        | table
+   15        | paragraph
+   16        | textoption
+   17        | enumoption
+   18        | listitem
+   19        | caption
+   20        | textbold
+   21        | textitalic
+   22        | label
+   23        | ref
+   24        | sum
+   25        | squareroot
+   26        | integral
+   27        | fraction
+
+   28 $@4: %empty
+
+   29 section: section SECTION LCURLYB $@4 textoption RCURLYB
+
+   30 $@5: %empty
+
+   31 section: SECTION LCURLYB $@5 textoption RCURLYB
+
+   32 $@6: %empty
+
+   33 subsection: subsection SUBSECTION LCURLYB $@6 textoption RCURLYB
+
+   34 $@7: %empty
+
+   35 subsection: SUBSECTION LCURLYB $@7 textoption RCURLYB
+
+   36 $@8: %empty
+
+   37 paragraph: PARAGRAPH LCURLYB $@8 textoption RCURLYB
+
+   38 $@9: %empty
+
+   39 enumoption: BEGINENUM $@9 listitem ENDENUM
+
+   40 listitem: listitem ITEM textoption
+   41         | ITEM textoption
+
+   42 $@10: %empty
+
+   43 caption: CAPTION LCURLYB $@10 textoption RCURLYB
+
+   44 label: LABEL LCURLYB WORD RCURLYB
+
+   45 ref: REF LCURLYB WORD RCURLYB
+
+   46 table: BEGINTABLE caption label tablebody ENDTABLE
+   47      | BEGINTABLE caption tablebody ENDTABLE
+   48      | BEGINTABLE tablebody ENDTABLE
+
+   49 tablebody: starttabular tabularbody endtabular
+
+   50 starttabular: BEGINTABULAR
+
+   51 endtabular: ENDTABULAR
+
+   52 tabularbody: hline tablerow tabularbody
+   53            | %empty
+
+   54 hline: HLINE hline
+   55      | %empty
+
+   56 $@11: %empty
+
+   57 tablerow: textoption AMPERSAND $@11 tablerow
+   58         | textoption NEWLINE
+
+   59 sum: SUM
+
+   60 integral: INTEGRAL
+
+   61 squareroot: SQRS WORD SQRE
+   62           | SQRS LETTERS SQRE
+
+   63 fraction: FRACS LCURLYB textoption RCURLYB LCURLYB textoption SQRE
+   64         | FRACS LCURLYB LETTERS RCURLYB LCURLYB LETTERS SQRE
+   65         | FRACS LCURLYB LETTERS RCURLYB LCURLYB textoption SQRE
+   66         | FRACS LCURLYB textoption RCURLYB LCURLYB LETTERS SQRE
+
+   67 $@12: %empty
+
+   68 $@13: %empty
+
+   69 $@14: %empty
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+   71 $@15: %empty
+
+   72 textbold: TEXTBOLD LCURLYB $@15 textoption RCURLYB
+
+   73 $@16: %empty
+
+   74 textitalic: TEXTITALIC LCURLYB $@16 textoption RCURLYB
+
+   75 textoption: textoption word
+   76           | textoption letters
+   77           | word
+   78           | letters
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+DOCUMENTCLASS (258) 6
+BEGINDOC (259) 6
+TITLE (260)
+AUTHOR (261)
+DATE (262)
+MAKETITLE (263)
+SECTION (264) 29 31
+PARAGRAPH (265) 37
+SUBSECTION (266) 33 35
+TEXTBOLD (267) 72
+TEXTITALIC (268) 74
+UNDERLINE (269)
+ENDDOC (270) 6
+LCURLYB (271) 29 31 33 35 37 43 44 45 63 64 65 66 70 72 74
+RCURLYB (272) 29 31 33 35 37 43 44 45 63 64 65 66 70 72 74
+BEGINENUM (273) 39
+ENDENUM (274) 39
+ITEM (275) 40 41
+LABEL (276) 44
+CAPTION (277) 43
+FRACS (278) 63 64 65 66
+SQRE (279) 61 62 63 64 65 66
+SQRS (280) 61 62
+INTEGRAL (281) 60
+SUM (282) 59
+BEGINTABLE (283) 46 47 48
+BEGINTABULAR (284) 50
+HLINE (285) 54
+AMPERSAND (286) 57
+NEWLINE (287) 58
+ENDTABLE (288) 46 47 48
+ENDTABULAR (289) 51
+PREAMBLE (290) 6 7
+REF (291) 45
+BEGINFIG (292) 70
+INGRAPHICS (293) 70
+ENDFIG (294) 70
+WIDTH (295) 70
+HEIGHT (296) 70
+RBRACKET (297) 70
+LBRACKET (298) 70
+H (299)
+T (300)
+B (301)
+L (302)
+C (303)
+R (304)
+PIPE (305)
+LETTERS (306) 2 62 64 65 66
+WORD (307) 1 44 45 61 70
+
+
+Nonterminals, with rules where they appear
+
+$accept (53)
+    on left: 0
+word (54)
+    on left: 1, on right: 75 77
+letters (55)
+    on left: 2, on right: 76 78
+latexstatement (56)
+    on left: 6, on right: 0
+$@1 (57)
+    on left: 3, on right: 6
+$@2 (58)
+    on left: 4, on right: 6
+$@3 (59)
+    on left: 5, on right: 6
+ignore (60)
+    on left: 7 8, on right: 6 7
+body (61)
+    on left: 9 10, on right: 6 9
+options (62)
+    on left: 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27, on right:
+    9 10
+section (63)
+    on left: 29 31, on right: 11 29
+$@4 (64)
+    on left: 28, on right: 29
+$@5 (65)
+    on left: 30, on right: 31
+subsection (66)
+    on left: 33 35, on right: 12 33
+$@6 (67)
+    on left: 32, on right: 33
+$@7 (68)
+    on left: 34, on right: 35
+paragraph (69)
+    on left: 37, on right: 15
+$@8 (70)
+    on left: 36, on right: 37
+enumoption (71)
+    on left: 39, on right: 17
+$@9 (72)
+    on left: 38, on right: 39
+listitem (73)
+    on left: 40 41, on right: 18 39 40
+caption (74)
+    on left: 43, on right: 19 46 47 70
+$@10 (75)
+    on left: 42, on right: 43
+label (76)
+    on left: 44, on right: 22 46
+ref (77)
+    on left: 45, on right: 23
+table (78)
+    on left: 46 47 48, on right: 14
+tablebody (79)
+    on left: 49, on right: 46 47 48
+starttabular (80)
+    on left: 50, on right: 49
+endtabular (81)
+    on left: 51, on right: 49
+tabularbody (82)
+    on left: 52 53, on right: 49 52
+hline (83)
+    on left: 54 55, on right: 52 54
+tablerow (84)
+    on left: 57 58, on right: 52 57
+$@11 (85)
+    on left: 56, on right: 57
+sum (86)
+    on left: 59, on right: 24
+integral (87)
+    on left: 60, on right: 26
+squareroot (88)
+    on left: 61 62, on right: 25
+fraction (89)
+    on left: 63 64 65 66, on right: 27
+graphics (90)
+    on left: 70, on right: 13
+$@12 (91)
+    on left: 67, on right: 70
+$@13 (92)
+    on left: 68, on right: 70
+$@14 (93)
+    on left: 69, on right: 70
+textbold (94)
+    on left: 72, on right: 20
+$@15 (95)
+    on left: 71, on right: 72
+textitalic (96)
+    on left: 74, on right: 21
+$@16 (97)
+    on left: 73, on right: 74
+textoption (98)
+    on left: 75 76 77 78, on right: 16 29 31 33 35 37 40 41 43 57 58
+    63 65 66 72 74 75 76
+
+
+State 0
+
+    0 $accept: . latexstatement $end
+
+    DOCUMENTCLASS  shift, and go to state 1
+
+    latexstatement  go to state 2
+
+
+State 1
+
+    6 latexstatement: DOCUMENTCLASS . $@1 PREAMBLE ignore BEGINDOC $@2 body ENDDOC $@3
+
+    $default  reduce using rule 3 ($@1)
+
+    $@1  go to state 3
+
+
+State 2
+
+    0 $accept: latexstatement . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    6 latexstatement: DOCUMENTCLASS $@1 . PREAMBLE ignore BEGINDOC $@2 body ENDDOC $@3
+
+    PREAMBLE  shift, and go to state 5
+
+
+State 4
+
+    0 $accept: latexstatement $end .
+
+    $default  accept
+
+
+State 5
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE . ignore BEGINDOC $@2 body ENDDOC $@3
+
+    PREAMBLE  shift, and go to state 6
+
+    $default  reduce using rule 8 (ignore)
+
+    ignore  go to state 7
+
+
+State 6
+
+    7 ignore: PREAMBLE . ignore
+
+    PREAMBLE  shift, and go to state 6
+
+    $default  reduce using rule 8 (ignore)
+
+    ignore  go to state 8
+
+
+State 7
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore . BEGINDOC $@2 body ENDDOC $@3
+
+    BEGINDOC  shift, and go to state 9
+
+
+State 8
+
+    7 ignore: PREAMBLE ignore .
+
+    $default  reduce using rule 7 (ignore)
+
+
+State 9
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore BEGINDOC . $@2 body ENDDOC $@3
+
+    $default  reduce using rule 4 ($@2)
+
+    $@2  go to state 10
+
+
+State 10
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore BEGINDOC $@2 . body ENDDOC $@3
+
+    SECTION     shift, and go to state 11
+    PARAGRAPH   shift, and go to state 12
+    SUBSECTION  shift, and go to state 13
+    TEXTBOLD    shift, and go to state 14
+    TEXTITALIC  shift, and go to state 15
+    BEGINENUM   shift, and go to state 16
+    ITEM        shift, and go to state 17
+    LABEL       shift, and go to state 18
+    CAPTION     shift, and go to state 19
+    FRACS       shift, and go to state 20
+    SQRS        shift, and go to state 21
+    INTEGRAL    shift, and go to state 22
+    SUM         shift, and go to state 23
+    BEGINTABLE  shift, and go to state 24
+    REF         shift, and go to state 25
+    BEGINFIG    shift, and go to state 26
+    LETTERS     shift, and go to state 27
+    WORD        shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    body        go to state 31
+    options     go to state 32
+    section     go to state 33
+    subsection  go to state 34
+    paragraph   go to state 35
+    enumoption  go to state 36
+    listitem    go to state 37
+    caption     go to state 38
+    label       go to state 39
+    ref         go to state 40
+    table       go to state 41
+    sum         go to state 42
+    integral    go to state 43
+    squareroot  go to state 44
+    fraction    go to state 45
+    graphics    go to state 46
+    textbold    go to state 47
+    textitalic  go to state 48
+    textoption  go to state 49
+
+
+State 11
+
+   31 section: SECTION . LCURLYB $@5 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 50
+
+
+State 12
+
+   37 paragraph: PARAGRAPH . LCURLYB $@8 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 51
+
+
+State 13
+
+   35 subsection: SUBSECTION . LCURLYB $@7 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 52
+
+
+State 14
+
+   72 textbold: TEXTBOLD . LCURLYB $@15 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 53
+
+
+State 15
+
+   74 textitalic: TEXTITALIC . LCURLYB $@16 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 54
+
+
+State 16
+
+   39 enumoption: BEGINENUM . $@9 listitem ENDENUM
+
+    $default  reduce using rule 38 ($@9)
+
+    $@9  go to state 55
+
+
+State 17
+
+   41 listitem: ITEM . textoption
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 56
+
+
+State 18
+
+   44 label: LABEL . LCURLYB WORD RCURLYB
+
+    LCURLYB  shift, and go to state 57
+
+
+State 19
+
+   43 caption: CAPTION . LCURLYB $@10 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 58
+
+
+State 20
+
+   63 fraction: FRACS . LCURLYB textoption RCURLYB LCURLYB textoption SQRE
+   64         | FRACS . LCURLYB LETTERS RCURLYB LCURLYB LETTERS SQRE
+   65         | FRACS . LCURLYB LETTERS RCURLYB LCURLYB textoption SQRE
+   66         | FRACS . LCURLYB textoption RCURLYB LCURLYB LETTERS SQRE
+
+    LCURLYB  shift, and go to state 59
+
+
+State 21
+
+   61 squareroot: SQRS . WORD SQRE
+   62           | SQRS . LETTERS SQRE
+
+    LETTERS  shift, and go to state 60
+    WORD     shift, and go to state 61
+
+
+State 22
+
+   60 integral: INTEGRAL .
+
+    $default  reduce using rule 60 (integral)
+
+
+State 23
+
+   59 sum: SUM .
+
+    $default  reduce using rule 59 (sum)
+
+
+State 24
+
+   46 table: BEGINTABLE . caption label tablebody ENDTABLE
+   47      | BEGINTABLE . caption tablebody ENDTABLE
+   48      | BEGINTABLE . tablebody ENDTABLE
+
+    CAPTION       shift, and go to state 19
+    BEGINTABULAR  shift, and go to state 62
+
+    caption       go to state 63
+    tablebody     go to state 64
+    starttabular  go to state 65
+
+
+State 25
+
+   45 ref: REF . LCURLYB WORD RCURLYB
+
+    LCURLYB  shift, and go to state 66
+
+
+State 26
+
+   70 graphics: BEGINFIG . INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    INGRAPHICS  shift, and go to state 67
+
+
+State 27
+
+    2 letters: LETTERS .
+
+    $default  reduce using rule 2 (letters)
+
+
+State 28
+
+    1 word: WORD .
+
+    $default  reduce using rule 1 (word)
+
+
+State 29
+
+   77 textoption: word .
+
+    $default  reduce using rule 77 (textoption)
+
+
+State 30
+
+   78 textoption: letters .
+
+    $default  reduce using rule 78 (textoption)
+
+
+State 31
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore BEGINDOC $@2 body . ENDDOC $@3
+    9 body: body . options
+
+    SECTION     shift, and go to state 11
+    PARAGRAPH   shift, and go to state 12
+    SUBSECTION  shift, and go to state 13
+    TEXTBOLD    shift, and go to state 14
+    TEXTITALIC  shift, and go to state 15
+    ENDDOC      shift, and go to state 68
+    BEGINENUM   shift, and go to state 16
+    ITEM        shift, and go to state 17
+    LABEL       shift, and go to state 18
+    CAPTION     shift, and go to state 19
+    FRACS       shift, and go to state 20
+    SQRS        shift, and go to state 21
+    INTEGRAL    shift, and go to state 22
+    SUM         shift, and go to state 23
+    BEGINTABLE  shift, and go to state 24
+    REF         shift, and go to state 25
+    BEGINFIG    shift, and go to state 26
+    LETTERS     shift, and go to state 27
+    WORD        shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    options     go to state 69
+    section     go to state 33
+    subsection  go to state 34
+    paragraph   go to state 35
+    enumoption  go to state 36
+    listitem    go to state 37
+    caption     go to state 38
+    label       go to state 39
+    ref         go to state 40
+    table       go to state 41
+    sum         go to state 42
+    integral    go to state 43
+    squareroot  go to state 44
+    fraction    go to state 45
+    graphics    go to state 46
+    textbold    go to state 47
+    textitalic  go to state 48
+    textoption  go to state 49
+
+
+State 32
+
+   10 body: options .
+
+    $default  reduce using rule 10 (body)
+
+
+State 33
+
+   11 options: section .
+   29 section: section . SECTION LCURLYB $@4 textoption RCURLYB
+
+    SECTION  shift, and go to state 70
+
+    SECTION   [reduce using rule 11 (options)]
+    $default  reduce using rule 11 (options)
+
+
+State 34
+
+   12 options: subsection .
+   33 subsection: subsection . SUBSECTION LCURLYB $@6 textoption RCURLYB
+
+    SUBSECTION  shift, and go to state 71
+
+    SUBSECTION  [reduce using rule 12 (options)]
+    $default    reduce using rule 12 (options)
+
+
+State 35
+
+   15 options: paragraph .
+
+    $default  reduce using rule 15 (options)
+
+
+State 36
+
+   17 options: enumoption .
+
+    $default  reduce using rule 17 (options)
+
+
+State 37
+
+   18 options: listitem .
+   40 listitem: listitem . ITEM textoption
+
+    ITEM  shift, and go to state 72
+
+    ITEM      [reduce using rule 18 (options)]
+    $default  reduce using rule 18 (options)
+
+
+State 38
+
+   19 options: caption .
+
+    $default  reduce using rule 19 (options)
+
+
+State 39
+
+   22 options: label .
+
+    $default  reduce using rule 22 (options)
+
+
+State 40
+
+   23 options: ref .
+
+    $default  reduce using rule 23 (options)
+
+
+State 41
+
+   14 options: table .
+
+    $default  reduce using rule 14 (options)
+
+
+State 42
+
+   24 options: sum .
+
+    $default  reduce using rule 24 (options)
+
+
+State 43
+
+   26 options: integral .
+
+    $default  reduce using rule 26 (options)
+
+
+State 44
+
+   25 options: squareroot .
+
+    $default  reduce using rule 25 (options)
+
+
+State 45
+
+   27 options: fraction .
+
+    $default  reduce using rule 27 (options)
+
+
+State 46
+
+   13 options: graphics .
+
+    $default  reduce using rule 13 (options)
+
+
+State 47
+
+   20 options: textbold .
+
+    $default  reduce using rule 20 (options)
+
+
+State 48
+
+   21 options: textitalic .
+
+    $default  reduce using rule 21 (options)
+
+
+State 49
+
+   16 options: textoption .
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    LETTERS   [reduce using rule 16 (options)]
+    WORD      [reduce using rule 16 (options)]
+    $default  reduce using rule 16 (options)
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 50
+
+   31 section: SECTION LCURLYB . $@5 textoption RCURLYB
+
+    $default  reduce using rule 30 ($@5)
+
+    $@5  go to state 75
+
+
+State 51
+
+   37 paragraph: PARAGRAPH LCURLYB . $@8 textoption RCURLYB
+
+    $default  reduce using rule 36 ($@8)
+
+    $@8  go to state 76
+
+
+State 52
+
+   35 subsection: SUBSECTION LCURLYB . $@7 textoption RCURLYB
+
+    $default  reduce using rule 34 ($@7)
+
+    $@7  go to state 77
+
+
+State 53
+
+   72 textbold: TEXTBOLD LCURLYB . $@15 textoption RCURLYB
+
+    $default  reduce using rule 71 ($@15)
+
+    $@15  go to state 78
+
+
+State 54
+
+   74 textitalic: TEXTITALIC LCURLYB . $@16 textoption RCURLYB
+
+    $default  reduce using rule 73 ($@16)
+
+    $@16  go to state 79
+
+
+State 55
+
+   39 enumoption: BEGINENUM $@9 . listitem ENDENUM
+
+    ITEM  shift, and go to state 17
+
+    listitem  go to state 80
+
+
+State 56
+
+   41 listitem: ITEM textoption .
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    LETTERS   [reduce using rule 41 (listitem)]
+    WORD      [reduce using rule 41 (listitem)]
+    $default  reduce using rule 41 (listitem)
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 57
+
+   44 label: LABEL LCURLYB . WORD RCURLYB
+
+    WORD  shift, and go to state 81
+
+
+State 58
+
+   43 caption: CAPTION LCURLYB . $@10 textoption RCURLYB
+
+    $default  reduce using rule 42 ($@10)
+
+    $@10  go to state 82
+
+
+State 59
+
+   63 fraction: FRACS LCURLYB . textoption RCURLYB LCURLYB textoption SQRE
+   64         | FRACS LCURLYB . LETTERS RCURLYB LCURLYB LETTERS SQRE
+   65         | FRACS LCURLYB . LETTERS RCURLYB LCURLYB textoption SQRE
+   66         | FRACS LCURLYB . textoption RCURLYB LCURLYB LETTERS SQRE
+
+    LETTERS  shift, and go to state 83
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 84
+
+
+State 60
+
+   62 squareroot: SQRS LETTERS . SQRE
+
+    SQRE  shift, and go to state 85
+
+
+State 61
+
+   61 squareroot: SQRS WORD . SQRE
+
+    SQRE  shift, and go to state 86
+
+
+State 62
+
+   50 starttabular: BEGINTABULAR .
+
+    $default  reduce using rule 50 (starttabular)
+
+
+State 63
+
+   46 table: BEGINTABLE caption . label tablebody ENDTABLE
+   47      | BEGINTABLE caption . tablebody ENDTABLE
+
+    LABEL         shift, and go to state 18
+    BEGINTABULAR  shift, and go to state 62
+
+    label         go to state 87
+    tablebody     go to state 88
+    starttabular  go to state 65
+
+
+State 64
+
+   48 table: BEGINTABLE tablebody . ENDTABLE
+
+    ENDTABLE  shift, and go to state 89
+
+
+State 65
+
+   49 tablebody: starttabular . tabularbody endtabular
+
+    HLINE  shift, and go to state 90
+
+    ENDTABULAR  reduce using rule 53 (tabularbody)
+    $default    reduce using rule 55 (hline)
+
+    tabularbody  go to state 91
+    hline        go to state 92
+
+
+State 66
+
+   45 ref: REF LCURLYB . WORD RCURLYB
+
+    WORD  shift, and go to state 93
+
+
+State 67
+
+   70 graphics: BEGINFIG INGRAPHICS . LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    LBRACKET  shift, and go to state 94
+
+
+State 68
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore BEGINDOC $@2 body ENDDOC . $@3
+
+    $default  reduce using rule 5 ($@3)
+
+    $@3  go to state 95
+
+
+State 69
+
+    9 body: body options .
+
+    $default  reduce using rule 9 (body)
+
+
+State 70
+
+   29 section: section SECTION . LCURLYB $@4 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 96
+
+
+State 71
+
+   33 subsection: subsection SUBSECTION . LCURLYB $@6 textoption RCURLYB
+
+    LCURLYB  shift, and go to state 97
+
+
+State 72
+
+   40 listitem: listitem ITEM . textoption
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 98
+
+
+State 73
+
+   75 textoption: textoption word .
+
+    $default  reduce using rule 75 (textoption)
+
+
+State 74
+
+   76 textoption: textoption letters .
+
+    $default  reduce using rule 76 (textoption)
+
+
+State 75
+
+   31 section: SECTION LCURLYB $@5 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 99
+
+
+State 76
+
+   37 paragraph: PARAGRAPH LCURLYB $@8 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 100
+
+
+State 77
+
+   35 subsection: SUBSECTION LCURLYB $@7 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 101
+
+
+State 78
+
+   72 textbold: TEXTBOLD LCURLYB $@15 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 102
+
+
+State 79
+
+   74 textitalic: TEXTITALIC LCURLYB $@16 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 103
+
+
+State 80
+
+   39 enumoption: BEGINENUM $@9 listitem . ENDENUM
+   40 listitem: listitem . ITEM textoption
+
+    ENDENUM  shift, and go to state 104
+    ITEM     shift, and go to state 72
+
+
+State 81
+
+   44 label: LABEL LCURLYB WORD . RCURLYB
+
+    RCURLYB  shift, and go to state 105
+
+
+State 82
+
+   43 caption: CAPTION LCURLYB $@10 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 106
+
+
+State 83
+
+    2 letters: LETTERS .
+   64 fraction: FRACS LCURLYB LETTERS . RCURLYB LCURLYB LETTERS SQRE
+   65         | FRACS LCURLYB LETTERS . RCURLYB LCURLYB textoption SQRE
+
+    RCURLYB  shift, and go to state 107
+
+    RCURLYB   [reduce using rule 2 (letters)]
+    $default  reduce using rule 2 (letters)
+
+
+State 84
+
+   63 fraction: FRACS LCURLYB textoption . RCURLYB LCURLYB textoption SQRE
+   66         | FRACS LCURLYB textoption . RCURLYB LCURLYB LETTERS SQRE
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 108
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 85
+
+   62 squareroot: SQRS LETTERS SQRE .
+
+    $default  reduce using rule 62 (squareroot)
+
+
+State 86
+
+   61 squareroot: SQRS WORD SQRE .
+
+    $default  reduce using rule 61 (squareroot)
+
+
+State 87
+
+   46 table: BEGINTABLE caption label . tablebody ENDTABLE
+
+    BEGINTABULAR  shift, and go to state 62
+
+    tablebody     go to state 109
+    starttabular  go to state 65
+
+
+State 88
+
+   47 table: BEGINTABLE caption tablebody . ENDTABLE
+
+    ENDTABLE  shift, and go to state 110
+
+
+State 89
+
+   48 table: BEGINTABLE tablebody ENDTABLE .
+
+    $default  reduce using rule 48 (table)
+
+
+State 90
+
+   54 hline: HLINE . hline
+
+    HLINE  shift, and go to state 90
+
+    $default  reduce using rule 55 (hline)
+
+    hline  go to state 111
+
+
+State 91
+
+   49 tablebody: starttabular tabularbody . endtabular
+
+    ENDTABULAR  shift, and go to state 112
+
+    endtabular  go to state 113
+
+
+State 92
+
+   52 tabularbody: hline . tablerow tabularbody
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    tablerow    go to state 114
+    textoption  go to state 115
+
+
+State 93
+
+   45 ref: REF LCURLYB WORD . RCURLYB
+
+    RCURLYB  shift, and go to state 116
+
+
+State 94
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET . WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    WIDTH  shift, and go to state 117
+
+
+State 95
+
+    6 latexstatement: DOCUMENTCLASS $@1 PREAMBLE ignore BEGINDOC $@2 body ENDDOC $@3 .
+
+    $default  reduce using rule 6 (latexstatement)
+
+
+State 96
+
+   29 section: section SECTION LCURLYB . $@4 textoption RCURLYB
+
+    $default  reduce using rule 28 ($@4)
+
+    $@4  go to state 118
+
+
+State 97
+
+   33 subsection: subsection SUBSECTION LCURLYB . $@6 textoption RCURLYB
+
+    $default  reduce using rule 32 ($@6)
+
+    $@6  go to state 119
+
+
+State 98
+
+   40 listitem: listitem ITEM textoption .
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    LETTERS   [reduce using rule 40 (listitem)]
+    WORD      [reduce using rule 40 (listitem)]
+    $default  reduce using rule 40 (listitem)
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 99
+
+   31 section: SECTION LCURLYB $@5 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 120
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 100
+
+   37 paragraph: PARAGRAPH LCURLYB $@8 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 121
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 101
+
+   35 subsection: SUBSECTION LCURLYB $@7 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 122
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 102
+
+   72 textbold: TEXTBOLD LCURLYB $@15 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 123
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 103
+
+   74 textitalic: TEXTITALIC LCURLYB $@16 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 124
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 104
+
+   39 enumoption: BEGINENUM $@9 listitem ENDENUM .
+
+    $default  reduce using rule 39 (enumoption)
+
+
+State 105
+
+   44 label: LABEL LCURLYB WORD RCURLYB .
+
+    $default  reduce using rule 44 (label)
+
+
+State 106
+
+   43 caption: CAPTION LCURLYB $@10 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 125
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 107
+
+   64 fraction: FRACS LCURLYB LETTERS RCURLYB . LCURLYB LETTERS SQRE
+   65         | FRACS LCURLYB LETTERS RCURLYB . LCURLYB textoption SQRE
+
+    LCURLYB  shift, and go to state 126
+
+
+State 108
+
+   63 fraction: FRACS LCURLYB textoption RCURLYB . LCURLYB textoption SQRE
+   66         | FRACS LCURLYB textoption RCURLYB . LCURLYB LETTERS SQRE
+
+    LCURLYB  shift, and go to state 127
+
+
+State 109
+
+   46 table: BEGINTABLE caption label tablebody . ENDTABLE
+
+    ENDTABLE  shift, and go to state 128
+
+
+State 110
+
+   47 table: BEGINTABLE caption tablebody ENDTABLE .
+
+    $default  reduce using rule 47 (table)
+
+
+State 111
+
+   54 hline: HLINE hline .
+
+    $default  reduce using rule 54 (hline)
+
+
+State 112
+
+   51 endtabular: ENDTABULAR .
+
+    $default  reduce using rule 51 (endtabular)
+
+
+State 113
+
+   49 tablebody: starttabular tabularbody endtabular .
+
+    $default  reduce using rule 49 (tablebody)
+
+
+State 114
+
+   52 tabularbody: hline tablerow . tabularbody
+
+    HLINE  shift, and go to state 90
+
+    ENDTABULAR  reduce using rule 53 (tabularbody)
+    $default    reduce using rule 55 (hline)
+
+    tabularbody  go to state 129
+    hline        go to state 92
+
+
+State 115
+
+   57 tablerow: textoption . AMPERSAND $@11 tablerow
+   58         | textoption . NEWLINE
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    AMPERSAND  shift, and go to state 130
+    NEWLINE    shift, and go to state 131
+    LETTERS    shift, and go to state 27
+    WORD       shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 116
+
+   45 ref: REF LCURLYB WORD RCURLYB .
+
+    $default  reduce using rule 45 (ref)
+
+
+State 117
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH . WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    WORD  shift, and go to state 132
+
+
+State 118
+
+   29 section: section SECTION LCURLYB $@4 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 133
+
+
+State 119
+
+   33 subsection: subsection SUBSECTION LCURLYB $@6 . textoption RCURLYB
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 134
+
+
+State 120
+
+   31 section: SECTION LCURLYB $@5 textoption RCURLYB .
+
+    $default  reduce using rule 31 (section)
+
+
+State 121
+
+   37 paragraph: PARAGRAPH LCURLYB $@8 textoption RCURLYB .
+
+    $default  reduce using rule 37 (paragraph)
+
+
+State 122
+
+   35 subsection: SUBSECTION LCURLYB $@7 textoption RCURLYB .
+
+    $default  reduce using rule 35 (subsection)
+
+
+State 123
+
+   72 textbold: TEXTBOLD LCURLYB $@15 textoption RCURLYB .
+
+    $default  reduce using rule 72 (textbold)
+
+
+State 124
+
+   74 textitalic: TEXTITALIC LCURLYB $@16 textoption RCURLYB .
+
+    $default  reduce using rule 74 (textitalic)
+
+
+State 125
+
+   43 caption: CAPTION LCURLYB $@10 textoption RCURLYB .
+
+    $default  reduce using rule 43 (caption)
+
+
+State 126
+
+   64 fraction: FRACS LCURLYB LETTERS RCURLYB LCURLYB . LETTERS SQRE
+   65         | FRACS LCURLYB LETTERS RCURLYB LCURLYB . textoption SQRE
+
+    LETTERS  shift, and go to state 135
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 136
+
+
+State 127
+
+   63 fraction: FRACS LCURLYB textoption RCURLYB LCURLYB . textoption SQRE
+   66         | FRACS LCURLYB textoption RCURLYB LCURLYB . LETTERS SQRE
+
+    LETTERS  shift, and go to state 137
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    textoption  go to state 138
+
+
+State 128
+
+   46 table: BEGINTABLE caption label tablebody ENDTABLE .
+
+    $default  reduce using rule 46 (table)
+
+
+State 129
+
+   52 tabularbody: hline tablerow tabularbody .
+
+    $default  reduce using rule 52 (tabularbody)
+
+
+State 130
+
+   57 tablerow: textoption AMPERSAND . $@11 tablerow
+
+    $default  reduce using rule 56 ($@11)
+
+    $@11  go to state 139
+
+
+State 131
+
+   58 tablerow: textoption NEWLINE .
+
+    $default  reduce using rule 58 (tablerow)
+
+
+State 132
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD . $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    $default  reduce using rule 67 ($@12)
+
+    $@12  go to state 140
+
+
+State 133
+
+   29 section: section SECTION LCURLYB $@4 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 141
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 134
+
+   33 subsection: subsection SUBSECTION LCURLYB $@6 textoption . RCURLYB
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    RCURLYB  shift, and go to state 142
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 135
+
+    2 letters: LETTERS .
+   64 fraction: FRACS LCURLYB LETTERS RCURLYB LCURLYB LETTERS . SQRE
+
+    SQRE  shift, and go to state 143
+
+    SQRE      [reduce using rule 2 (letters)]
+    $default  reduce using rule 2 (letters)
+
+
+State 136
+
+   65 fraction: FRACS LCURLYB LETTERS RCURLYB LCURLYB textoption . SQRE
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    SQRE     shift, and go to state 144
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 137
+
+    2 letters: LETTERS .
+   66 fraction: FRACS LCURLYB textoption RCURLYB LCURLYB LETTERS . SQRE
+
+    SQRE  shift, and go to state 145
+
+    SQRE      [reduce using rule 2 (letters)]
+    $default  reduce using rule 2 (letters)
+
+
+State 138
+
+   63 fraction: FRACS LCURLYB textoption RCURLYB LCURLYB textoption . SQRE
+   75 textoption: textoption . word
+   76           | textoption . letters
+
+    SQRE     shift, and go to state 146
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word     go to state 73
+    letters  go to state 74
+
+
+State 139
+
+   57 tablerow: textoption AMPERSAND $@11 . tablerow
+
+    LETTERS  shift, and go to state 27
+    WORD     shift, and go to state 28
+
+    word        go to state 29
+    letters     go to state 30
+    tablerow    go to state 147
+    textoption  go to state 115
+
+
+State 140
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 . WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    WORD  shift, and go to state 148
+
+
+State 141
+
+   29 section: section SECTION LCURLYB $@4 textoption RCURLYB .
+
+    $default  reduce using rule 29 (section)
+
+
+State 142
+
+   33 subsection: subsection SUBSECTION LCURLYB $@6 textoption RCURLYB .
+
+    $default  reduce using rule 33 (subsection)
+
+
+State 143
+
+   64 fraction: FRACS LCURLYB LETTERS RCURLYB LCURLYB LETTERS SQRE .
+
+    $default  reduce using rule 64 (fraction)
+
+
+State 144
+
+   65 fraction: FRACS LCURLYB LETTERS RCURLYB LCURLYB textoption SQRE .
+
+    $default  reduce using rule 65 (fraction)
+
+
+State 145
+
+   66 fraction: FRACS LCURLYB textoption RCURLYB LCURLYB LETTERS SQRE .
+
+    $default  reduce using rule 66 (fraction)
+
+
+State 146
+
+   63 fraction: FRACS LCURLYB textoption RCURLYB LCURLYB textoption SQRE .
+
+    $default  reduce using rule 63 (fraction)
+
+
+State 147
+
+   57 tablerow: textoption AMPERSAND $@11 tablerow .
+
+    $default  reduce using rule 57 (tablerow)
+
+
+State 148
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD . HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    HEIGHT  shift, and go to state 149
+
+
+State 149
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT . WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    WORD  shift, and go to state 150
+
+
+State 150
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD . $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    $default  reduce using rule 68 ($@13)
+
+    $@13  go to state 151
+
+
+State 151
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 . RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    RBRACKET  shift, and go to state 152
+
+
+State 152
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET . LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    LCURLYB  shift, and go to state 153
+
+
+State 153
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB . WORD WORD WORD $@14 RCURLYB caption ENDFIG
+
+    WORD  shift, and go to state 154
+
+
+State 154
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD . WORD WORD $@14 RCURLYB caption ENDFIG
+
+    WORD  shift, and go to state 155
+
+
+State 155
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD . WORD $@14 RCURLYB caption ENDFIG
+
+    WORD  shift, and go to state 156
+
+
+State 156
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD . $@14 RCURLYB caption ENDFIG
+
+    $default  reduce using rule 69 ($@14)
+
+    $@14  go to state 157
+
+
+State 157
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 . RCURLYB caption ENDFIG
+
+    RCURLYB  shift, and go to state 158
+
+
+State 158
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB . caption ENDFIG
+
+    CAPTION  shift, and go to state 19
+
+    caption  go to state 159
+
+
+State 159
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption . ENDFIG
+
+    ENDFIG  shift, and go to state 160
+
+
+State 160
+
+   70 graphics: BEGINFIG INGRAPHICS LBRACKET WIDTH WORD $@12 WORD HEIGHT WORD $@13 RBRACKET LCURLYB WORD WORD WORD $@14 RCURLYB caption ENDFIG .
+
+    $default  reduce using rule 70 (graphics)
